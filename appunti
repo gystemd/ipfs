@@ -1,0 +1,31 @@
+core/coreapi/pin.go: contains pin related functions and data structures
+
+
+./cmd/ipfs/ipfs pin ls
+core/commands/pin.go -> core/coreapi/pin.go: pinLsAll
+
+remotepin.go: lsRemote
+
+
+TODO: investigate how to use boxo index to find the pin
+
+
+Index from Boxo, but what Do I have to index actually?
+the pin names
+
+
+I checked what we did in remote pinning years ago, and it uses --name for filtering:
+
+$ ipfs pin remote ls --help
+[..]
+--name     string - Return pins with names that contain the value provided (case-sensitive, exact match)
+
+opts = append(opts, pinclient.PinOpts.FilterName(nameStr))
+
+if len(settings.name) > 0 {
+    getter = getter.Name(settings.name)
+}
+
+definitions:
+- A remote pinning service in the context of IPFS (InterPlanetary File System) is a feature designed to facilitate the persistent storage of IPFS content
+The IPFS pinning service is a service that allows you to store your IPFS content on a remote server.
